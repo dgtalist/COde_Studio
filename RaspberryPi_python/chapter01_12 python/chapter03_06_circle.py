@@ -1,4 +1,4 @@
-'''chapter03_05_circle.py v1.0'''
+'''chapter03_06_circle.py v1.0'''
 
 print('## 원기둥의 겉넓이와 부피를 구하는 프로그램입니다. ##')
 print()
