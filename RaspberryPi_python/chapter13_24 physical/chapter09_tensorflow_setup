@@ -1,3 +1,6 @@
+tensorflow 2.X 최신버전은 파이썬 3.6 ~ 3.9 version / pip3 19.0 이상의 버전이 필요합니다.
+버전 확인 방법 python : $ python3 --version   /  pip : $ pip3 --version
+
 Step 1: pip install
 $ sudo apt-get install python3-pip
 
