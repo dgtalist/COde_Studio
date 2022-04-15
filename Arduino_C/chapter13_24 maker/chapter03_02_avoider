@@ -1,7 +1,7 @@
 #define TRIG 12
 #define ECHO 11
 
-int PWM = 100;
+int PWM = 30;
 int ENA = 10;
 int IN1 =  9;
 int IN2 = 8;
@@ -21,26 +21,17 @@ void setup() {
 }
 
 void forward(){
-   digitalWrite(IN1, HIGH);
-   digitalWrite(IN2, LOW);
-   analogWrite(ENA, PWM);
-   digitalWrite(IN3, HIGH);
-   digitalWrite(IN4, LOW);
-   analogWrite(ENB, PWM); 
-}
-
-void backward(){
    digitalWrite(IN1, LOW);
    digitalWrite(IN2, HIGH);
    analogWrite(ENA, PWM);
    digitalWrite(IN3, LOW);
    digitalWrite(IN4, HIGH);
-   analogWrite(ENB, PWM); 
+   analogWrite(ENB, PWM);
 }
 
-void right(){
-   digitalWrite(IN1, LOW);
-   digitalWrite(IN2, HIGH);
+void backward(){
+   digitalWrite(IN1, HIGH);
+   digitalWrite(IN2, LOW);
    analogWrite(ENA, PWM);
    digitalWrite(IN3, HIGH);
    digitalWrite(IN4, LOW);
@@ -56,12 +47,35 @@ void left(){
    analogWrite(ENB, PWM); 
 }
 
+void left_2(){
+   analogWrite(ENA, 0);
+   digitalWrite(IN3, LOW);
+   digitalWrite(IN4, HIGH);
+   analogWrite(ENB, PWM); 
+}
+
+void right(){
+   digitalWrite(IN1, LOW);
+   digitalWrite(IN2, HIGH);
+   analogWrite(ENA, PWM);
+   digitalWrite(IN3, HIGH);
+   digitalWrite(IN4, LOW);
+   analogWrite(ENB, PWM); 
+}
+
+void right_2(){
+   digitalWrite(IN1, LOW);
+   digitalWrite(IN2, HIGH);
+   analogWrite(ENA, PWM);
+   analogWrite(ENB, 0);
+}
+
 void stop(){
    analogWrite(ENA, 0);
    analogWrite(ENB, 0);
 }
 
-void loop() {
+void loop(){
   long duration, distance;
   digitalWrite(TRIG, LOW);
   delayMicroseconds(2);
@@ -69,11 +83,13 @@ void loop() {
   delayMicroseconds(10);
   digitalWrite(TRIG, LOW);
 
-  duration = pulseIn (ECHO, HIGH);
+  duration = pulseIn(ECHO, HIGH);
   distance = duration * 17 / 1000;
-  if (distance < 10){
+
+  if (distance < 7){
     left();
     delay(800) ;
+  }
   else {
     forward();
   }
