@@ -25,8 +25,8 @@ void forward(){
 }
 
 void backward(){
-   digitalWrite(IN1, LOW);
-   digitalWrite(IN2, HIGH);
+   digitalWrite(IN1, HIGH);
+   digitalWrite(IN2, LOW);
    analogWrite(ENA, PWM);
    digitalWrite(IN3, LOW);
    digitalWrite(IN4, HIGH);
@@ -59,6 +59,6 @@ void stop(){
 void loop(){
   forward();
   delay(1000);
-  left();
-  delay(500);
+  stop();
+  delay(5000);
 }
