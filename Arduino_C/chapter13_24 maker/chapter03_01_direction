@@ -1,4 +1,4 @@
-int PWM = 50;
+int PWM = 50; 
 int ENA = 10;
 int IN1 =  9;
 int IN2 = 8;
@@ -16,8 +16,8 @@ void setup() {
 }
 
 void forward(){
-   digitalWrite(IN1, LOW);
-   digitalWrite(IN2, HIGH);
+   digitalWrite(IN1, HIGH);
+   digitalWrite(IN2, LOW);
    analogWrite(ENA, PWM);
    digitalWrite(IN3, HIGH);
    digitalWrite(IN4, LOW);
@@ -25,8 +25,8 @@ void forward(){
 }
 
 void backward(){
-   digitalWrite(IN1, HIGH);
-   digitalWrite(IN2, LOW);
+   digitalWrite(IN1, LOW);
+   digitalWrite(IN2, HIGH);
    analogWrite(ENA, PWM);
    digitalWrite(IN3, LOW);
    digitalWrite(IN4, HIGH);
@@ -34,8 +34,8 @@ void backward(){
 }
 
 void left(){
-   digitalWrite(IN1, HIGH);
-   digitalWrite(IN2, LOW);
+   digitalWrite(IN1, LOW);
+   digitalWrite(IN2, HIGH);
    analogWrite(ENA, PWM);
    digitalWrite(IN3, HIGH);
    digitalWrite(IN4, LOW);
@@ -43,8 +43,8 @@ void left(){
 }
 
 void right(){
-   digitalWrite(IN1, LOW);
-   digitalWrite(IN2, HIGH);
+   digitalWrite(IN1, HIGH);
+   digitalWrite(IN2, LOW);
    analogWrite(ENA, PWM);
    digitalWrite(IN3, LOW);
    digitalWrite(IN4, HIGH);
