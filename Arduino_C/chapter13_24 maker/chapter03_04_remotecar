@@ -1,0 +1,103 @@
+#include <SoftwareSerial.h>
+
+int bluetoothTx = 2;
+int bluetoothRx = 3;
+
+int PWM = 50;
+int ENA = 10;
+int IN1 =  9;
+int IN2 = 8;
+int IN3 = 7;
+int IN4 = 6;
+int ENB = 5;
+
+SoftwareSerial bluetooth(bluetoothTx, bluetoothRx);
+
+void setup() {
+  bluetooth.begin(9600);
+
+  pinMode(TRIG, OUTPUT);
+  pinMode(ECHO, INPUT);
+  pinMode(ENA, OUTPUT);
+  pinMode(IN1, OUTPUT); 
+  pinMode(IN2, OUTPUT); 
+  pinMode(IN3, OUTPUT); 
+  pinMode(IN4, OUTPUT); 
+  pinMode(ENB, OUTPUT);
+}
+
+void forward(){
+   digitalWrite(IN1, HIGH);
+   digitalWrite(IN2, LOW);
+   analogWrite(ENA, PWM);
+   digitalWrite(IN3, HIGH);
+   digitalWrite(IN4, LOW);
+   analogWrite(ENB, PWM);
+}
+
+void backward(){
+   digitalWrite(IN1, LOW);
+   digitalWrite(IN2, HIGH);
+   analogWrite(ENA, PWM);
+   digitalWrite(IN3, LOW);
+   digitalWrite(IN4, HIGH);
+   analogWrite(ENB, PWM); 
+}
+
+void left(){
+   digitalWrite(IN1, LOW);
+   digitalWrite(IN2, HIGH);
+   analogWrite(ENA, PWM);
+   digitalWrite(IN3, HIGH);
+   digitalWrite(IN4, LOW);
+   analogWrite(ENB, PWM); 
+}
+
+void left_2(){
+   analogWrite(ENA, 0);
+   digitalWrite(IN3, HIGH);
+   digitalWrite(IN4, LOW);
+   analogWrite(ENB, PWM); 
+}
+
+void right(){
+   digitalWrite(IN1, HIGH);
+   digitalWrite(IN2, LOW);
+   analogWrite(ENA, PWM);
+   digitalWrite(IN3, LOW);
+   digitalWrite(IN4, HIGH);
+   analogWrite(ENB, PWM); 
+}
+
+void right_2(){
+   digitalWrite(IN1, HIGH);
+   digitalWrite(IN2, LOW);
+   analogWrite(ENA, PWM);
+   analogWrite(ENB, 0); 
+}
+
+void stop(){
+   analogWrite(ENA, 0);
+   analogWrite(ENB, 0);
+}
+
+void loop() {
+ if(bluetooth.available()) {
+  char cmd = (char)bluetooth.read();
+  if(cmd == 'f') {
+   forward();
+  }
+  else if(cmd == 'b') {
+   backward() ;
+  }
+  else if(cmd == 'l') {
+   left();
+  }
+  else if(cmd == 'r') {
+   right() ;
+  } 
+  else if(cmd == 's') {
+   stop() ;
+  }
+ }
+}
