@@ -1,85 +1,101 @@
-음성인식 설정 – config 설정
+1. google assistant install
+$ cd ~/MagicMirror/modules/
+~/modules $ git clone https://github.com/bugsounet/MMM-GoogleAssistant
+~/modules $ cd MMM-GoogleAssistant
+~/modules $ npm install
 
+2. google assistant config
 {
-		  module: "MMM-Detector",
-		  position: "top_left",
-		  configDeepMerge: true,
-		  config: {
-			debug: false,
-			autoStart: true,
-			useLogos: true,
-			micConfig: {
-			  recorder: "auto",
-			  device: "default",
-			  // only for snowboy:
-			  audioGain: 2.0,
-			  applyFrontend: true 
-			},
-			newLogos: {
-			  default: "default.png"
-			},
-			detectors: [
-			  {
-				detector: "Snowboy",
-				Model: "jarvis",
-				Sensitivity: null,
-				Logo: "google",
-				autoRestart: false,
-				onDetected: {
-				  notification: "GA_ACTIVATE"
-				}
-			  },
-			  {
-				detector: "Snowboy",
-				Model: "alexa",
-				Sensitivity: null,
-				Logo: "alexa",
-				autoRestart: false,
-				onDetected: {
-				  notification: "ALEXA_ACTIVATE"
-				}
-			  },
-			  {
-				detector: "Porcupine",
-				Model: "ok google",
-				Sensitivity: null,
-				Logo: "google",
-				autoRestart: false,
-				onDetected: {
-				  notification: "GA_ACTIVATE"
-				}
-			  },
-			  {
-				detector: "Porcupine",
-				Model: "hey google",
-				Sensitivity: null,
-				Logo: "google",
-				autoRestart: false,
-				onDetected: {
-				  notification: "GA_ACTIVATE"
-				}
-			  }
-			],
-			NPMCheck: {
-			  useChecker: true,
-			  delay: 10 * 60 * 1000,
-			  useAlert: true
-			}
-		  }
-		},
+  module: "MMM-GoogleAssistant",
+  configDeepMerge: true,
+  config: {
+    debug: false,
+    stopCommand: "stop",
+    assistantConfig: {
+      lang: "ko-KR",
+      latitude: 36.32139,
+      longitude: 127.41972,
+      deviceRegistred: true
+    },
+    responseConfig: {
+      useFullscreen: false,
+      responseOutputCSS: "response_output.css",
+      screenOutputTimer: 5000,
+      useChime: true,
+      confirmationChime: true
+    }
+    recipes: []
+  }
+},
 
+3. plugin : Gateway install
+$ cd ~/MagicMirror/modules
+~/MagicMirror/modules$ git clone https://github.com/bugsounet/Gateway
+~/MagicMirror/modules$ cd Gateway
+~/MagicMirror/modules/Gateway$ npm install
 
-
-구글어시스턴트 설정 – config 설
-
+4. plugin : Gateway config
 {
-			  module: "MMM-GoogleAssistant",
-			  position: "top_left",
-			  configDeepMerge: true,
-			  config: {
-				assistantConfig: {
-				  latitude: 36.348781,
-				  longitude: 127.389214,
-				},
-			  }
-		},
+  module: 'Gateway'
+},
+
+5. plugin : Gateway update
+$ cd ~/MagicMirror/modules/Gateway
+~/MagicMirror/modules/Gateway$ npm run update
+
+6. plugin : Ext-Detector install
+$ cd ~/MagicMirror/modules
+~/MagicMirror/modules$ git clone https://github.com/bugsounet/EXT-Detector
+~/MagicMirror/modules$ cd EXT-Detector
+~/MagicMirror/modules/EXT-Detector$ npm install
+
+7. plugin : Ext-Detector config
+{
+  module: "EXT-Detector",
+  position: "top_left",
+  configDeepMerge: true,
+  config: {
+    debug: false,
+    useIcon: true,
+    touchOnly: false,
+    detectors: [
+      {
+      detector: "Snowboy",
+      Model: "jarvis",
+      Sensitivity: null
+      },
+      {
+      detector: "Porcupine",
+      Model: "ok google",
+      Sensitivity: null
+      },
+      {
+      detector: "Porcupine",
+      Model: "hey google",
+      Sensitivity: null
+      },
+                ]
+    }
+},
+
+8. plugin : Ext-Alert install
+$ cd ~/MagicMirror/modules
+~/MagicMirror/modules$ git clone https://github.com/bugsounet/EXT-Alert
+~/MagicMirror/modules$ cd EXT-Alert
+~/MagicMirror/modules/EXT-Alert $ npm install
+
+9. plugin : Ext-Alert config
+{
+  module: 'EXT-Alert',
+  config: {
+    debug: false,
+    ignore: []
+  }
+},
+
+10. token setup
+$ cd ~/MagicMirror/modules/MMM-GoogleAssistant
+~/MagicMirror/modules/MMM-GoogleAssistant$ npm run token
+
+
+
