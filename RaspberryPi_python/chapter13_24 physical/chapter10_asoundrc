@@ -29,3 +29,6 @@ $ speaker-test -t wav
 
 5. 마이크 테스트
 $ arecord --format=S16_LE --duration=5 --rate=16000 --file-type=raw out.raw
+
+6. 녹음 파일 실행
+$ aplay --format=S16_LE --rate=16000 out.raw 
