@@ -1,0 +1,11 @@
+1. magic mirror install
+$ curl -sL https://deb.nodesource.com/setup_16.x | sudo -E bash -
+$ sudo apt install -y nodejs
+$ git clone https://github.com/MichMich/MagicMirror
+$ cd MagicMirror/
+~/MagicMirror$ npm install --only=prod --omit=dev
+~/MagicMirror$ cp config/config.js.sample config/config.js
+~/MagicMirror$ npm run start
+
+2. module cancel
+Ctrl + q
