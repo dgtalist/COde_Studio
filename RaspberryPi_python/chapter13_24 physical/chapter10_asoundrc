@@ -4,7 +4,7 @@ $ arecord -l
 2. 스피커 설정
 $ aplay -l
 
-3. 설정 파일 생성
+3. 설정 파일 생성 ( $ nano .asoundrc )
 pcm.!default {
   type asym
   capture.pcm "mic"
