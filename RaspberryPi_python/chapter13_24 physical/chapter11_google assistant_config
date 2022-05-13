@@ -23,7 +23,7 @@ $ cd ~/MagicMirror/modules/
       screenOutputTimer: 5000,
       useChime: true,
       confirmationChime: true
-    }
+    },
     recipes: []
   }
 },
