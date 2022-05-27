@@ -65,8 +65,8 @@ def forward_f():
     time.sleep(t) 
 
 def Reverse():
-    pwm_e1.ChangeDutyCycle(15)
-    pwm_e2.ChangeDutyCycle(15)
+    pwm_e1.ChangeDutyCycle(20)
+    pwm_e2.ChangeDutyCycle(20)
     GPIO.output(Motor_L1_Pin, False)
     GPIO.output(Motor_L2_Pin, True)
     GPIO.output(Motor_R1_Pin, False)
@@ -74,7 +74,7 @@ def Reverse():
     time.sleep(t)
 
 def turnLeft():
-    pwm_e1.ChangeDutyCycle(15)
+    pwm_e1.ChangeDutyCycle(0)
     pwm_e2.ChangeDutyCycle(20)
     GPIO.output(Motor_L1_Pin, False)
     GPIO.output(Motor_L2_Pin, True)
@@ -93,7 +93,7 @@ def turnLeft_f():
 
 def turnRight():
     pwm_e1.ChangeDutyCycle(20)
-    pwm_e2.ChangeDutyCycle(15)
+    pwm_e2.ChangeDutyCycle(0)
     GPIO.output(Motor_L1_Pin, True)
     GPIO.output(Motor_L2_Pin, False)
     GPIO.output(Motor_R1_Pin, False)
@@ -110,7 +110,7 @@ def turnRight_f():
     time.sleep(t)
 
 def cleanup():
-   stop()  
-   pwm_e1.stop()
-   pwm_e2.stop()
-   GPIO.cleanup()
+    stop()  
+    pwm_e1.stop()
+    pwm_e2.stop()
+    GPIO.cleanup()
