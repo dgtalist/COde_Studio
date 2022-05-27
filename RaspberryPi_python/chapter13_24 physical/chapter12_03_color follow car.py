@@ -48,13 +48,13 @@ try:
                     else:
                         print(radius) """
                 if  radius > 5 :
-                    motor.forward_1()
+                    motor.forward_f()
                     if center[0] > Frame_Width/2 + 55 :
                         motor.turnRight()
                     elif center[0] < Frame_Width/2 -55 :
                         motor.turnLeft()
                     else:
-                        motor.forward_1() #Low Run
+                        motor.forward_f() #fast Run
                     #elif radius > 65:
                     #    motor.Reverse()
                 else:
