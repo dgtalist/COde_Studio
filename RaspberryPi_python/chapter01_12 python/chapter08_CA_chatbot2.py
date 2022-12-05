@@ -27,12 +27,12 @@ while True:
                     print('%s : %s\n' %(AI, qna_dict[qna2]))
                     break
             if talk2 not in qna2:
-                print('없는 질문입니다. 상담원으로 통해 답변 받으세요.')
+                print('없는 질문입니다. 상담원으로 통해 답변 받으세요.\n')
                 break
             break
         continue
     if talk1 not in qna1:
-        print('제품 분류를 다시 입력해 주세요.')
+        print('제품 분류를 다시 입력해 주세요.\n')
         continue
 
 
