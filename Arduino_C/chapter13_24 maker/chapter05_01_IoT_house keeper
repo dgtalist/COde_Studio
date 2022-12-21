@@ -1,0 +1,53 @@
+#include "thingProperties.h"
+
+int pir_pin = 4; //D2
+int led_pin = 13; //D7
+
+void setup() {
+  // Initialize serial and wait for port to open:
+  Serial.begin(9600);
+  // This delay gives the chance to wait for a Serial Monitor without blocking if none is found
+  delay(1500);
+  
+  pinMode(led_pin, OUTPUT);
+  pinMode(pir_pin, INPUT);
+
+  digitalWrite(13, HIGH);
+  delay(500);
+  digitalWrite(13, LOW);
+  delay(500);
+  digitalWrite(13, HIGH);
+  delay(500);
+  digitalWrite(13, LOW);
+  delay(500);
+
+  // Defined in thingProperties.h
+  initProperties();
+
+  // Connect to Arduino IoT Cloud
+  ArduinoCloud.begin(ArduinoIoTPreferredConnection);
+  
+  /*
+     The following function allows you to obtain more information
+     related to the state of network and IoT Cloud connection and errors
+     the higher number the more granular information you’ll get.
+     The default is 0 (only errors).
+     Maximum is 4
+ */
+  setDebugMessageLevel(2);
+  ArduinoCloud.printDebugInfo();
+}
+
+void loop() {
+  ArduinoCloud.update();
+  // Your code here 
+  pir = digitalRead(pir_pin);
+  
+  if(pir) {
+    digitalWrite(led_pin, HIGH);
+    delay(3000);
+  }
+  else{
+    digitalWrite(led_pin, LOW);
+  }
+}
