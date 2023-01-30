@@ -1,0 +1,46 @@
+#include <Adafruit_NeoPixel.h>
+#ifdef __AVR__
+#include <avr/power.h>
+#endif
+
+#define PIN 6
+#define NUMPIXELS 3
+#define DELAYVAL 5000
+
+Adafruit_NeoPixel pixels(NUMPIXELS, PIN, NEO_GRB + NEO_KHZ800);
+
+long interval_red = 10000;
+long interval_green = 15000;
+long previousMillis = 0;
+
+void setup() {
+  Serial.begin(115200);
+  #if defined(__AVR_ATtiny85__) && (F_CPU == 16000000)
+    clock_prescale_set(clock_div_1);
+  #endif
+  pixels.begin();
+  pixels.clear();
+  pixels.show();
+  delay(1000);
+}
+
+void loop() {
+  unsigned long currentMillis = millis();
+  Serial.println(currentMillis);
+
+  if( currentMillis - previousMillis <= interval_red ) {
+    pixels.setPixelColor(0, pixels.Color(0, 0, 0));
+    pixels.setPixelColor(1, pixels.Color(0, 0, 0));
+    pixels.setPixelColor(2, pixels.Color(150, 0, 0));
+    pixels.show();
+  }
+  else if( currentMillis - previousMillis > interval_red && currentMillis - previousMillis <= interval_green ) {
+    pixels.setPixelColor(0, pixels.Color(0, 0, 0));
+    pixels.setPixelColor(1, pixels.Color(0, 150, 0));
+    pixels.setPixelColor(2, pixels.Color(0, 0, 0));
+    pixels.show();
+  }
+  else if (currentMillis - previousMillis > interval_green){
+    previousMillis = currentMillis;
+  }
+}
