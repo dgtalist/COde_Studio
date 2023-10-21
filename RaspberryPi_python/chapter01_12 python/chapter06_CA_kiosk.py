@@ -33,11 +33,12 @@ while True:
 
 메뉴를 고르세요.(종료=x) : '''
 )
-    if choice == 'x':
-        money=int(input('결제할 금액을 입력하세요.:'))
+    if choice =='x':
+        print('계산하실 금액은 %d원 입니다.' %total)
+        money=int(input('결제할 금액을 입력하세요 : '))
         break
 
-    number = int(input('갯수? :'))
+    number = int(input('갯수 : '))
     total = total + food(choice, number)
- 
-print('계산하실 금액은 %d원 입니다. 잔돈은 %d원입니다.' %(total, money-total))
+
+print('잔돈은 %d원 입니다. 맛있게 드세요,' %(money-total))
