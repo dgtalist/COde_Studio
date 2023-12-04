@@ -45,3 +45,11 @@ void onPowerSwitchChange()  {
     motor_speed = 0;
   }
 }
+
+void onMotorSpeedChange()  {
+
+}
+
+void onTemperatureChange()  {
+
+}
