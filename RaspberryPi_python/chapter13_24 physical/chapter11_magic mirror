@@ -1,11 +1,15 @@
-1. magic mirror install
-$ curl -sL https://deb.nodesource.com/setup_16.x | sudo -E bash -
-$ sudo apt install -y nodejs
-$ git clone https://github.com/MichMich/MagicMirror
+1. Node.js 22.x: 설치
+$ sudo apt-get install -y curl
+$ curl -fsSL https://deb.nodesource.com/setup_22.x -o nodesource_setup.sh
+$ sudo -E bash nodesource_setup.sh
+$ Node.js 22.x:
+
+2. Magic Mirror 2 설치
+$ git clone https://github.com/MagicMirrorOrg/MagicMirror
 $ cd MagicMirror/
-~/MagicMirror$ npm install --only=prod --omit=dev
+~/MagicMirror$ npm run install-mm
 ~/MagicMirror$ cp config/config.js.sample config/config.js
 ~/MagicMirror$ npm run start
 
-2. module cancel
+3. Magic Mirror 종료
 Ctrl + q
