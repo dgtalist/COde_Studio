@@ -2,7 +2,6 @@
 $ sudo apt-get install -y curl
 $ curl -fsSL https://deb.nodesource.com/setup_22.x -o nodesource_setup.sh
 $ sudo -E bash nodesource_setup.sh
-$ Node.js 22.x:
 
 2. Magic Mirror 2 설치
 $ git clone https://github.com/MagicMirrorOrg/MagicMirror
