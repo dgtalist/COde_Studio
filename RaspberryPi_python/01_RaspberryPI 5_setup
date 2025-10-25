@@ -44,7 +44,7 @@ Raspberry Pi에 SD카드 삽입 이후 사용자, 비번,  WiFi 설정
     	sudo install -o root -g root -m 644 packages.microsoft.gpg /etc/apt/trusted.gpg.d/
     	sudo sh -c 'echo "deb [arch=arm64] https://packages.microsoft.com/repos/code stable main" > /etc/apt/sources.list.d/vscode.list'
     	sudo apt update
-    	sudo apt install code –y
+    	sudo apt install -y code
     
     실행 :
        code
