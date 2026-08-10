@@ -26,7 +26,7 @@ while true do
         end
     end
     if nearest then
-        humanoid:MoveTo(nearest.Position)   -- 가장 가까운 사람에게 이동
+        humanoid:MoveTo(nearest.Position)
     end
 end
 
