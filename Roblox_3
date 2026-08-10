@@ -35,10 +35,10 @@ end
 local npc = workspace:WaitForChild("술래")
 local root = npc:WaitForChild("HumanoidRootPart")
 root.Touched:Connect(function(hit)
-    if hit.Parent == npc then return end       -- 술래 자기 몸은 무시
+    if hit.Parent == npc then return end
     local h = hit.Parent:FindFirstChildOfClass("Humanoid")
     if h then
-        h.Health = 0        -- 잡히면 리스폰
+        h.Health = 0
     end
 end)
 
