@@ -7,11 +7,8 @@ Workspace
 
 
 [ 가장 가까운 사람 쫒아감 ]
--- 준비물: "술래" (Humanoid 있는 캐릭터 모델)
 local Players = game:GetService("Players")
--- ▼▼▼ 내가 바꾸는 부분 ▼▼▼
-local NPC_SPEED = 12    -- 술래 속도 (내 캐릭터 기본은 16)
--- ▲▲▲ 여기까지 ▲▲▲
+local NPC_SPEED = 12
 
 local npc = workspace:WaitForChild("술래")
 local humanoid = npc:WaitForChild("Humanoid")
