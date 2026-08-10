@@ -1,0 +1,56 @@
+[ 기본 설정 ]
+Workspace
+ ├─ 술래     (Model)    ← Rig Builder로 만든 더미. Humanoid 포함 필수
+ │    ├─ Humanoid
+ │    └─ HumanoidRootPart  ...
+ └─ (맵)                ← 장애물·벽·엄폐물을 자유롭게 배치
+
+
+[ 가장 가까운 사람 쫒아감 ]
+local npc = workspace:WaitForChild("술래")
+local humanoid = npc:WaitForChild("Humanoid")
+local root = npc:WaitForChild("HumanoidRootPart")
+humanoid.WalkSpeed = NPC_SPEED
+while true do
+    task.wait(0.4)
+    local nearest, dist = nil, math.huge
+    for _, p in ipairs(Players:GetPlayers()) do
+        local char = p.Character
+        local hrp = char and char:FindFirstChild("HumanoidRootPart")
+        if hrp then
+            local d = (hrp.Position - root.Position).Magnitude
+            if d < dist then dist = d; nearest = hrp end
+        end
+    end
+    if nearest then
+        humanoid:MoveTo(nearest.Position)   -- 가장 가까운 사람에게 이동
+  end
+end
+
+
+[ 술래에 닿으면 리스폰]
+local npc = workspace:WaitForChild("술래")
+local root = npc:WaitForChild("HumanoidRootPart")
+root.Touched:Connect(function(hit)
+    if hit.Parent == npc then return end       -- 술래 자기 몸은 무시
+    local h = hit.Parent:FindFirstChildOfClass("Humanoid")
+    if h then
+        h.Health = 0        -- 잡히면 리스폰
+    end
+end
+
+
+[ 정해진 시간까지 버티면 승리 ]
+task.wait(2)
+local start = os.clock()
+while os.clock() - start < SURVIVE_TIME do
+    task.wait(1)
+end
+local msg = Instance.new("Message")
+msg.Text = WIN_MESSAGE
+msg.Parent = workspace
+task.wait(5)
+msg:Destroy()
+
+                     
+  
