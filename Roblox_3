@@ -37,7 +37,7 @@ root.Touched:Connect(function(hit)
     if h then
         h.Health = 0        -- 잡히면 리스폰
     end
-end
+end)
 
 
 [ 정해진 시간까지 버티면 승리 ]
