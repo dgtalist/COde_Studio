@@ -7,6 +7,12 @@ Workspace
 
 
 [ 가장 가까운 사람 쫒아감 ]
+-- 준비물: "술래" (Humanoid 있는 캐릭터 모델)
+local Players = game:GetService("Players")
+-- ▼▼▼ 내가 바꾸는 부분 ▼▼▼
+local NPC_SPEED = 12    -- 술래 속도 (내 캐릭터 기본은 16)
+-- ▲▲▲ 여기까지 ▲▲▲
+
 local npc = workspace:WaitForChild("술래")
 local humanoid = npc:WaitForChild("Humanoid")
 local root = npc:WaitForChild("HumanoidRootPart")
@@ -24,7 +30,7 @@ while true do
     end
     if nearest then
         humanoid:MoveTo(nearest.Position)   -- 가장 가까운 사람에게 이동
-  end
+    end
 end
 
 
@@ -41,6 +47,12 @@ end)
 
 
 [ 정해진 시간까지 버티면 승리 ]
+- 정해진 시간을 버티면 승리 메시지
+-- ▼▼▼ 내가 바꾸는 부분 ▼▼▼
+local SURVIVE_TIME = 30    -- 몇 초 버티면 승리?
+local WIN_MESSAGE = "생존 성공! 술래를 이겼어요!"
+-- ▲▲▲ 여기까지 ▲▲▲
+
 task.wait(2)
 local start = os.clock()
 while os.clock() - start < SURVIVE_TIME do
