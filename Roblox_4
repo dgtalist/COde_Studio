@@ -1,0 +1,55 @@
+[ Explorer ]
+Workspace
+ ├─ 용암          (Part)     ← 넓고 납작하게. 바닥 전체를 덮기
+ ├─ 안전발판      (Folder)   ← 밟고 지나갈 발판 여러 개 (Anchored)
+ │    ├─ 발판1  (Part)
+ │    └─ 발판2  (Part)  ...
+ ├─ 움직이는발판  (Part)     ← 좌우로 움직이는 발판 (Anchored 체크!)
+ └─ 도착          (Part)     ← 탈출 지점 (이름을 꼭 "도착"으로!)
+
+
+[ 닿으면 처음으로 돌아감 ]
+local LAVA_COLOR = Color3.fromRGB(255, 80, 0)
+local lava = workspace:WaitForChild("용암")
+lava.Color = LAVA_COLOR
+lava.Material = Enum.Material.Neon
+lava.Touched:Connect(function(hit)
+    local h = hit.Parent:FindFirstChildOfClass("Humanoid")
+    if h then
+        h.Health = 0
+    end
+end)
+
+
+[ 좌우로 스르륵 움직임 ]
+local MOVE_DISTANCE = 20
+local MOVE_TIME = 2
+local TweenService = game:GetService("TweenService")
+local part = workspace:WaitForChild("움직이는발판")
+local startPos = part.Position
+local info = TweenInfo.new(MOVE_TIME, Enum.EasingStyle.Sine,
+    Enum.EasingDirection.InOut, -1, true)
+local goal = {Position = startPos + Vector3.new(MOVE_DISTANCE, 0, 0)}
+TweenService:Create(part, info, goal):Play()
+
+
+[ 도착 발판에 닿으면 성공 ]
+local Players = game:GetService("Players")
+local WIN_MESSAGE = "탈출 성공! 용암을 이겼어요!"
+local goal = workspace:WaitForChild("도착")
+local reached = {}
+goal.Touched:Connect(function(hit)
+    local p = Players:GetPlayerFromCharacter(hit.Parent)
+    if p and not reached[p] then
+        reached[p] = true
+        local msg = Instance.new("Message")
+        msg.Text = WIN_MESSAGE
+        msg.Parent = workspace
+        task.wait(3)
+        msg:Destroy()
+        reached[p] = nil
+    end
+end)
+
+
+
